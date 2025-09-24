@@ -1,0 +1,20 @@
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+.env/
+.venv/
+env/
+
+# Archivos de configuración locales
+*.log
+*.pot
+*.pyc
+.DS_Store
+
+# Archivos de pruebas
+.coverage
+.pytest_cache/
