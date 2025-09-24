@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog,messagebox
 import re
 from AlgoritmoGenetico import algoritmoGenetico
+import numpy as np
 
 class InterfazGrafica:
     def __init__(self, root):
@@ -44,10 +45,11 @@ class InterfazGrafica:
         file_path = filedialog.askopenfilename()
         if file_path:
             # Open the image using Pillow
-            img = Image.open(file_path)
+            img = Image.open(file_path).convert("RGB")
             
             # Resize the image if needed (optional)
             img = img.resize((200, 200), Image.LANCZOS) # Example resize
+
             
             # Convert the Pillow image to a Tkinter PhotoImage
             img_tk = ImageTk.PhotoImage(img)
@@ -147,8 +149,8 @@ class InterfazGrafica:
         poblacion_frame = tk.Frame(self.root, width=950,height=450)
         poblacion_frame.grid(column=1, row=0)
 
-        text_label = tk.Label(poblacion_frame, text="Poblacion")
-        text_label.grid(row=3, column= 3)
+        text_label = tk.Label(poblacion_frame, text="Poblacion: generacion 0")
+        text_label.grid(row=3, column= 0)
 
         original_frame = tk.Frame(self.root, width=200,height=200)
         original_frame.grid(column=3, row=0)
@@ -159,7 +161,9 @@ class InterfazGrafica:
         text_label2 = tk.Label(original_frame, text="Imagen Original")
         text_label2.pack()
 
-        algoritmoGenetico(poblacion_frame)
+        pil_img = ImageTk.getimage(self.mi_imagen)
+        
+        algoritmoGenetico(self.root, poblacion_frame, text_label, float(self.porcentaje_var.get().strip()), pil_img)
 
 
 
