@@ -123,13 +123,13 @@ class InterfazGrafica:
                 return
 
             porcentaje_parentezco = float(porcentaje_str)
-            if porcentaje_parentezco < 100 and porcentaje_parentezco > 0:
+            if porcentaje_parentezco <= 100 and porcentaje_parentezco >= 0:
                 self.mostrar_pantalla_alg()
                 return
             else:
                 messagebox.showwarning(
                         "Error",
-                        "El rango permitido para el porcentaje de parentezco es entre 0 y 100 excluyendo el 0 y el 100"
+                        "El rango permitido para el porcentaje de parentezco es entre 0 y 100"
                     )
                 return
         
@@ -163,12 +163,6 @@ class InterfazGrafica:
 
         pil_img = ImageTk.getimage(self.mi_imagen)
         
-        algoritmoGenetico(self.root, poblacion_frame, text_label, float(self.porcentaje_var.get().strip()), pil_img)
+        algoritmoGenetico( poblacion_frame, text_label, float(self.porcentaje_var.get().strip()), pil_img)
 
 
-
-        
-
-root = tk.Tk()
-app = InterfazGrafica(root)
-root.mainloop()
